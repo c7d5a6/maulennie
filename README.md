@@ -1,5 +1,5 @@
 # Maŭleńnie
 
 ```Shell
-$ ./scripts/replace.js filenameFrom filenameTo
+$ ./scripts/replace.js FILE_FROM [FILE_TO]
 ```
