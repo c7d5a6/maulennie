@@ -1,5 +1,5 @@
 # Maŭleńnie
 
-```
-$: ./scripts/replace.js filenameFrom filenameTo
+```Shell
+$ ./scripts/replace.js filenameFrom filenameTo
 ```
