@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 const fs = require('fs');
+const path = require('path');
 
 replaceMiak = (text) => {
     let result = text;
@@ -225,11 +226,37 @@ const replaceText = (text) => {
     result = replaceH(result);
     result = replaceK(result);
     result = replaceB(result);
-    
+
     return result;
 }
 
 const fileName = process.argv[2];
-const text = fs.readFileSync(fileName, "utf8");
-const result = replaceText(text);
-fs.writeFileSync(fileName+"-phon.txt", result, 'utf8');
+let fileNameTo = process.argv[3];
+if (fileName) {
+    if(!fileNameTo){
+        fileNameTo = `${path.parse(fileName).name}-phonetic${path.parse(fileName).ext}`;
+    }
+    const text = fs.readFileSync(fileName, "utf8");
+    const result = replaceText(text);
+    fs.writeFileSync(fileNameTo, result, 'utf8');
+
+    logSuccess("Done!");
+} else {
+    logError("No filename provided");
+}
+
+function logError(...arguments) {
+    if (typeof (console) !== 'undefined') {
+        arguments.unshift("\x1b[31m");
+        arguments.push("\x1b[0m");
+        console.log.apply(console, arguments);
+    }
+}
+
+function logSuccess(...arguments) {
+    if (typeof (console) !== 'undefined') {
+        arguments.unshift("\x1b[32m");
+        arguments.push("\x1b[0m");
+        console.log.apply(console, arguments);
+    }
+}
