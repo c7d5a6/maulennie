@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {environment} from '../environments/environment';
 
 
 @Component({
@@ -7,6 +8,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  currentApplicationVersion = environment.appVersion;
   title = 'mauliennie';
   input = '';
   output = '';
@@ -31,14 +33,14 @@ export class AppComponent {
     const regexpN1 = /н(?=(н[ёеяіюь]))/gi;
     const regexpL1 = /л(?=(л[ёеяіюь]))/gi;
 
-    result = result.replace(regexpS1, 'сь');
-    result = result.replace(regexpS2, 'сь');
-    result = result.replace(regexpZ1, 'зь');
-    result = result.replace(regexpZ2, 'зь');
-    result = result.replace(regexpC1, 'ць');
-    result = result.replace(regexpC2, 'ць');
-    result = result.replace(regexpN1, 'нь');
-    result = result.replace(regexpL1, 'ль');
+    result = result.replace(regexpS1, 'сЬ');
+    result = result.replace(regexpS2, 'сЬ');
+    result = result.replace(regexpZ1, 'зЬ');
+    result = result.replace(regexpZ2, 'зЬ');
+    result = result.replace(regexpC1, 'цЬ');
+    result = result.replace(regexpC2, 'цЬ');
+    result = result.replace(regexpN1, 'нЬ');
+    result = result.replace(regexpL1, 'лЬ');
     return result;
   }
 
@@ -240,6 +242,12 @@ export class AppComponent {
     result = this.replaceH(result);
     result = this.replaceK(result);
     result = this.replaceB(result);
+
+    const regex1 = /Ь/g;
+    const regex2 = /\]\[/gi;
+
+    result = result.replace(regex1, '[ь]');
+    result = result.replace(regex2, '');
 
     return result;
   }
