@@ -211,8 +211,13 @@
   }
 
   footer a {
-    display: flex;
+    /* display: flex; */
+    color: #333;
     align-items: center;
+  }
+
+  footer a :hover {
+    color: #121212;
   }
 
   .github-star-badge {
@@ -306,10 +311,10 @@
     font-family: Georgia, Times, serif;
     font-size: inherit;
     line-height: 1.5em;
-}
+  }
 
-.submit_button_container .submit_button {
-    background: rgba(255, 0, 0, 0.6);
+  .submit_button_container a {
+    background: #333;
     height: 60px;
     display: block;
     float: right;
@@ -328,7 +333,20 @@
     /* margin-left: 60px; */
     font-size: 100%;
     border-style: none;
-}
+  }
+
+  /* .submit_button_container a:not(.active):hover {
+    background: #121212;
+    /* transform: translateY(-3px); */
+    /* box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35); */
+  /* } */
+
+  .submit_button_container a:active:hover {
+    background: #777777;
+    /* transform: translateY(-3px); */
+    /* box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35); */
+  }
+
 </style>
 
 <!-- Toolbar -->
@@ -370,17 +388,17 @@
         <textarea id="checktextOut" class="converter_textarea" name="" [(ngModel)]="output"></textarea>
       </div>
     </div>
-    <div class="card">
-      <div class="submit_button_container">
-        <a href="#" (click)="convert($event)" class="submit_button">Канвэртаваць</a>
-      </div>
+    <!-- <div class="card"> -->
+    <div class="submit_button_container">
+      <a href="#" (click)="convert($event)">Канвэртаваць</a>
     </div>
+    <!-- </div> -->
   </div>
 
   <!-- Footer -->
   <footer class="mastfoot mt-auto">
     <div class="inner">
-      <p>Mikita Kukavenka 2021</p>
+      <p><span><a href="https://c7d5a6.com/"><b>Mikita Kukavenka</b></a> 2021</span></p>
     </div>
   </footer>
 </div>
