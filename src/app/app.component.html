@@ -1,0 +1,386 @@
+<style>
+  :host {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 14px;
+    color: #333;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 8px 0;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  .spacer {
+    flex: 1;
+  }
+
+  .toolbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    background-color: #333;
+    color: white;
+    font-weight: 600;
+  }
+
+  .toolbar svg {
+    margin: 0 16px;
+  }
+
+  .content {
+    display: flex;
+    margin: 82px auto 32px;
+    padding: 0 16px;
+    max-width: 1060px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  svg.material-icons {
+    height: 24px;
+    width: auto;
+  }
+
+  svg.material-icons:not(:last-child) {
+    margin-right: 8px;
+  }
+
+  .card svg.material-icons path {
+    fill: #888;
+  }
+
+  .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 16px;
+    width: 100%;
+  }
+
+  .card {
+    border-radius: 4px;
+    border: 1px solid #eee;
+    background-color: #fafafa;
+    height: fit-content;
+    width: 45%;
+    margin: 0 8px 16px;
+    padding: 16px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s ease-in-out;
+    line-height: 24px;
+  }
+
+  .card-container .card:not(:last-child) {
+    margin-right: 0;
+  }
+
+  .card.card-small {
+    height: 16px;
+    width: 168px;
+  }
+
+  .card-container .card:not(.highlight-card) {
+    cursor: pointer;
+  }
+
+  .card-container .card:not(.highlight-card):hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
+  }
+
+  .card-container .card:not(.highlight-card):hover .material-icons path {
+    fill: rgb(105, 103, 103);
+  }
+
+  .card.highlight-card {
+    background-color: #1976d2;
+    color: white;
+    font-weight: 600;
+    border: none;
+    width: auto;
+    min-width: 30%;
+    position: relative;
+  }
+
+  .card.card.highlight-card span {
+    margin-left: 60px;
+  }
+
+  svg#rocket {
+    width: 80px;
+    position: absolute;
+    left: -10px;
+    top: -24px;
+  }
+
+  svg#rocket-smoke {
+    height: calc(100vh - 95px);
+    position: absolute;
+    top: 10px;
+    right: 180px;
+    z-index: -10;
+  }
+
+  a,
+  a:visited,
+  a:hover {
+    color: #1976d2;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: #125699;
+  }
+
+  .terminal {
+    position: relative;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 6px;
+    padding-top: 45px;
+    margin-top: 8px;
+    overflow: hidden;
+    background-color: rgb(15, 15, 16);
+  }
+
+  .terminal::before {
+    content: "\2022 \2022 \2022";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 4px;
+    background: rgb(58, 58, 58);
+    color: #c2c3c4;
+    width: 100%;
+    font-size: 2rem;
+    line-height: 0;
+    padding: 14px 0;
+    text-indent: 4px;
+  }
+
+  .terminal pre {
+    font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+    color: white;
+    padding: 0 1rem 1rem;
+    margin: 0;
+  }
+
+  .circle-link {
+    height: 40px;
+    width: 40px;
+    border-radius: 40px;
+    margin: 8px;
+    background-color: white;
+    border: 1px solid #eeeeee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: 1s ease-out;
+  }
+
+  .circle-link:hover {
+    transform: translateY(-0.25rem);
+    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  footer {
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    line-height: 20px;
+  }
+
+  footer a {
+    display: flex;
+    align-items: center;
+  }
+
+  .github-star-badge {
+    color: #24292e;
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    padding: 3px 10px;
+    border: 1px solid rgba(27, 31, 35, .2);
+    border-radius: 3px;
+    background-image: linear-gradient(-180deg, #fafbfc, #eff3f6 90%);
+    margin-left: 4px;
+    font-weight: 600;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+  }
+
+  .github-star-badge:hover {
+    background-image: linear-gradient(-180deg, #f0f3f6, #e6ebf1 90%);
+    border-color: rgba(27, 31, 35, .35);
+    background-position: -.5em;
+  }
+
+  .github-star-badge .material-icons {
+    height: 16px;
+    width: 16px;
+    margin-right: 4px;
+  }
+
+  svg#clouds {
+    position: fixed;
+    bottom: -160px;
+    left: -230px;
+    z-index: -10;
+    width: 1920px;
+  }
+
+
+  /* Responsive Styles */
+  @media screen and (max-width: 767px) {
+
+    .card-container>*:not(.circle-link),
+    .terminal {
+      width: 100%;
+    }
+
+    .card:not(.highlight-card) {
+      /* height: 16px; */
+      margin: 8px 0;
+    }
+
+    .card.highlight-card span {
+      margin-left: 72px;
+    }
+
+    svg#rocket-smoke {
+      right: 120px;
+      transform: rotate(-5deg);
+    }
+  }
+
+  @media screen and (max-width: 575px) {
+    svg#rocket-smoke {
+      display: none;
+      visibility: hidden;
+    }
+  }
+
+  .text-column {
+    padding-left: 10px;
+    padding-right: 10px;
+    float: left;
+    width: 100%;
+  }
+
+  .mt-auto,
+  .my-auto {
+    margin-top: auto !important;
+  }
+
+  .mastfoot {
+    margin-top: 100px;
+  }
+
+  .converter_textarea {
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+    min-height: 400px;
+    border: 0px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    font-family: Georgia, Times, serif;
+    font-size: inherit;
+    line-height: 1.5em;
+}
+
+.submit_button_container .submit_button {
+    background: rgba(255, 0, 0, 0.6);
+    height: 60px;
+    display: block;
+    float: right;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    color: #ffffff;
+    line-height: 60px;
+    text-align: center;
+    /* width: 25%; */
+    padding: 0 20px;
+    text-transform: uppercase;
+    /* margin-left: 60px; */
+    font-size: 100%;
+    border-style: none;
+}
+</style>
+
+<!-- Toolbar -->
+<div class="toolbar" role="banner">
+  <svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg"
+    xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" height="40px" width="40px" viewBox="0 0 24 24"
+    fill="#000000" version="1.1" id="svg6" sodipodi:docname="mk.svg" inkscape:version="1.0.2 (394de47547, 2021-03-26)">
+    <defs id="defs10" />
+    <path d="M0 0h24v24H0z" fill="none" id="path2" />
+    <path d="m 26.528442,-0.16723119 h 24 V 23.832768 h -24 z" fill="none" id="path2-3" />
+    <g id="g940" transform="matrix(0.65482219,0,0,0.65482219,73.8271,70.151065)"
+      inkscape:export-filename="/home/nkukovenko/Documents/favnew.png" inkscape:export-xdpi="83.817871"
+      inkscape:export-ydpi="83.817871">
+      <circle style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.05414;stroke-opacity:1" id="path891"
+        cx="-94.413597" cy="-88.79982" r="18.325447" />
+      <path id="path4-6" style="fill:#ffffff;fill-opacity:1;stroke-width:1.16506"
+        d="m -100.11432,-97.123709 -4.19149,4.191491 v -3.902501 h -2.32329 v 15.405207 h 2.32329 v -8.207767 l 4.19604,-4.200592 1.656576,1.656572 3.292663,3.292663 -0.0023,0.0023 7.386307,7.386306 1.642918,-1.642918 -7.386307,-7.386308 -1.647469,-1.649744 1.647469,-1.64747 12.326442,12.32644 1.654295,-1.642918 -13.980737,-13.980737 -3.294938,3.29949 -1.656573,-1.656572 z" />
+    </g>
+  </svg>
+  <span>Maŭlieńnie</span>
+</div>
+
+<div class="content" role="main">
+
+  <!-- <h1>Resources</h1> -->
+  <!-- <p>Here are some links to help you get started:</p> -->
+
+  <div class="card-container">
+
+    <div class="card ">
+      <div class="text-column ">
+        <textarea id="checktextIn" class="converter_textarea" name="" [(ngModel)]="input"></textarea>
+      </div>
+    </div>
+    <div class="card">
+      <div class="text-column">
+        <textarea id="checktextOut" class="converter_textarea" name="" [(ngModel)]="output"></textarea>
+      </div>
+    </div>
+    <div class="card">
+      <div class="submit_button_container">
+        <a href="#" (click)="convert($event)" class="submit_button">Канвэртаваць</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="mastfoot mt-auto">
+    <div class="inner">
+      <p>Mikita Kukavenka 2021</p>
+    </div>
+  </footer>
+</div>
