@@ -8,5 +8,7 @@ if (environment.production) {
   enableProdMode();
 }
 
+console.log(`Starting Maŭlieńnie v${environment.appVersion}`);
+
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));
