@@ -24,8 +24,6 @@ describe('HeaderComponent', () => {
   });
 
   it('should render title', () => {
-    const fixture = TestBed.createComponent(HeaderComponent);
-    fixture.detectChanges();
     const compiled = fixture.nativeElement;
     expect(compiled.querySelector('.toolbar').textContent).toContain('Maŭlieńnie');
   });
