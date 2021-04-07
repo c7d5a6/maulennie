@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {environment} from '../environments/environment';
+import { environment } from '../environments/environment';
 
 
 @Component({
@@ -13,9 +13,8 @@ export class AppComponent {
   input = '';
   output = '';
 
-  convert(event: Event) {
+  convert(event: Event): void {
     event.stopPropagation();
-    console.log("hey");
     this.output = this.replaceText(this.input);
   }
 
