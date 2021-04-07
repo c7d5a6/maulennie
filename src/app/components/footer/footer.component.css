@@ -1,0 +1,16 @@
+footer {
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    line-height: 20px;
+}
+
+footer a {
+    /* display: flex; */
+    color: #333;
+    align-items: center;
+}
+
+footer a :hover {
+    color: #121212;
+}
