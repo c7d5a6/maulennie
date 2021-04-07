@@ -1,0 +1,18 @@
+<div class="card-container">
+    <div class="card ">
+        <div class="text-column ">
+            <p class="text-area-label">Зыходны тэкст:</p>
+            <textarea id="checktextIn" class="converter_textarea" name="" [(ngModel)]="input"></textarea>
+        </div>
+    </div>
+    <div class="card">
+        <div class="text-column">
+            <p class="text-area-label">Фанетычная апрацоўка:</p>
+            <textarea id="checktextOut" class="converter_textarea" name="" [(ngModel)]="output"></textarea>
+        </div>
+    </div>
+    <div class="submit_button_container">
+        <a href="#" (click)="convert($event)">Канвертаваць</a>
+    </div>
+</div>
+
