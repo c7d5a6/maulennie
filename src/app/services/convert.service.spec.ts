@@ -391,37 +391,37 @@ describe('ConvertService', () => {
     });
     describe('с, сь перад звонкімі вымаўляюцца як з, зь.', () => {
       it('хрэсьбіны -> хрэ[зь]біны', () => {
-        expect(service.replaceS('хрэсьбіны')).toEqual('хрэ[зь]біны');
+        expect(service.replaceS(service.replaceMiak('хрэсьбіны'))).toEqual('хрэ[зь]біны');
       });
       it('касьба -> ка[зь]ба', () => {
-        expect(service.replaceS('касьба')).toEqual('ка[зь]ба');
+        expect(service.replaceS(service.replaceMiak('касьба'))).toEqual('ка[зь]ба');
       });
       it('носьбіт -> но[зь]біт', () => {
-        expect(service.replaceS('носьбіт')).toEqual('но[зь]біт');
+        expect(service.replaceS(service.replaceMiak('носьбіт'))).toEqual('но[зь]біт');
       });
       it('просьба -> про[зь]ба', () => {
-        expect(service.replaceS('просьба')).toEqual('про[зь]ба');
+        expect(service.replaceS(service.replaceMiak('просьба'))).toEqual('про[зь]ба');
       });
-      it('солсберскі -> сол[з]берскі', () => {
-        expect(service.replaceS('солсберскі')).toEqual('сол[з]берскі');
+      it('солсберскі -> сол[зь]берскі', () => {
+        expect(service.replaceS(service.replaceMiak('солсберскі'))).toEqual('сол[зь]берскі');
       });
       it('фасген -> фа[з]ген', () => {
-        expect(service.replaceS('фасген')).toEqual('фа[з]ген');
+        expect(service.replaceS(service.replaceMiak('фасген'))).toEqual('фа[з]ген');
       });
       it('бейсбол -> бей[з]бол', () => {
-        expect(service.replaceS('бейсбол')).toEqual('бей[з]бол');
+        expect(service.replaceS(service.replaceMiak('бейсбол'))).toEqual('бей[з]бол');
       });
       it('бейсбаліст -> бей[з]баліст', () => {
-        expect(service.replaceS('бейсбаліст')).toEqual('бей[з]баліст');
+        expect(service.replaceS(service.replaceMiak('бейсбаліст'))).toEqual('бей[з]баліст');
       });
       it('дысгармонія -> ды[з]гармонія', () => {
-        expect(service.replaceS('дысгармонія')).toEqual('ды[з]гармонія');
+        expect(service.replaceS(service.replaceMiak('дысгармонія'))).toEqual('ды[з]гармонія');
       });
       it('айсберг -> ай[з]берг', () => {
-        expect(service.replaceS('айсберг')).toEqual('ай[з]берг');
+        expect(service.replaceS(service.replaceMiak('айсберг'))).toEqual('ай[зь]берг');
       });
       it('неспакой -> неспакой', () => {
-        expect(service.replaceS('неспакой')).toEqual('неспакой');
+        expect(service.replaceS(service.replaceMiak('неспакой'))).toEqual('неспакой');
       });
     });
     describe('с перад мяккімі зычнымі к, ф, х вымаўляецца цвёрда.', () => {
@@ -483,7 +483,70 @@ describe('ConvertService', () => {
         expect(service.replaceS('счэплівацца')).toEqual('[ш]чэплівацца');
       });
     });
-    describe('з перад мяккімі зычнымі дз, л, з, б, в, м, н вымаўляецца мякка.', () => { });
+    describe('з перад мяккімі зычнымі дз, л, з, б, в, м, н вымаўляецца мякка.', () => { 
+      //дз
+      it('здзейсніць -> з[ь]дзейс[ь]ніць', () => {
+        expect(service.replaceS(service.replaceMiak('здзейсніць')).replace(/Ь/g, '[ь]')).toEqual('з[ь]дзейс[ь]ніць');
+      });
+      it('з Дзімам -> з[ь] Дзімам', () => {
+        expect(service.replaceS(service.replaceMiak('з Дзімам')).replace(/Ь/g, '[ь]')).toEqual('з[ь] Дзімам');
+      });
+      it('без дзяцей -> без[ь] дзяцей', () => {
+        expect(service.replaceS(service.replaceMiak('без дзяцей')).replace(/Ь/g, '[ь]')).toEqual('без[ь] дзяцей');
+      });
+      it('здзівіць -> з[ь]дзівіць', () => {
+        expect(service.replaceS(service.replaceMiak('здзівіць')).replace(/Ь/g, '[ь]')).toEqual('з[ь]дзівіць');
+      });
+      //л
+      it('з лета -> з[ь] лета', () => {
+        expect(service.replaceS(service.replaceMiak('з лета')).replace(/Ь/g, '[ь]')).toEqual('з[ь] лета');
+      });
+      it('з лёну -> з[ь] лёну', () => {
+        expect(service.replaceS(service.replaceMiak('з лёну')).replace(/Ь/g, '[ь]')).toEqual('з[ь] лёну');
+      });
+      it('цераз лес -> цераз[ь] лес', () => {
+        expect(service.replaceS(service.replaceMiak('цераз лес')).replace(/Ь/g, '[ь]')).toEqual('цераз[ь] лес');
+      });
+      it('пералез лес -> пералез лес', () => {
+        expect(service.replaceS(service.replaceMiak('пералез лес')).replace(/Ь/g, '[ь]')).toEqual('пералез лес');
+      });
+      it('злёг -> з[ь]лёг', () => {
+        expect(service.replaceS(service.replaceMiak('злёг')).replace(/Ь/g, '[ь]')).toEqual('з[ь]лёг');
+      });
+      it('безліч -> без[ь]ліч', () => {
+        expect(service.replaceS(service.replaceMiak('безліч')).replace(/Ь/g, '[ь]')).toEqual('без[ь]ліч');
+      });
+      //з
+      it('ззяе -> з[ь]зяе', () => {
+        expect(service.replaceS(service.replaceMiak('ззяе')).replace(/Ь/g, '[ь]')).toEqual('з[ь]зяе');
+      });
+      it('з зімы -> з[ь] зімы', () => {
+        expect(service.replaceS(service.replaceMiak('з зімы')).replace(/Ь/g, '[ь]')).toEqual('з[ь] зімы');
+      });
+      it('з Зінаю -> з[ь] Зінаю', () => {
+        expect(service.replaceS(service.replaceMiak('з Зінаю')).replace(/Ь/g, '[ь]')).toEqual('з[ь] Зінаю');
+      });
+      it('без зярняці -> без[ь] зярняці', () => {
+        expect(service.replaceS(service.replaceMiak('без зярняці')).replace(/Ь/g, '[ь]')).toEqual('без[ь] зярняці');
+      });
+      it('з зямлянкі -> з[ь] зямлянкі', () => {
+        expect(service.replaceS(service.replaceMiak('з зямлянкі')).replace(/Ь/g, '[ь]')).toEqual('з[ь] зямлянкі');
+      });
+      //б
+      it('збянтэжанасць -> з[ь]бянтэжанас[ь]ць', () => {
+        expect(service.replaceS(service.replaceMiak('збянтэжанасць')).replace(/Ь/g, '[ь]')).toEqual('з[ь]бянтэжанас[ь]ць');
+      });
+      it('з берагу -> з[ь] берагу', () => {
+        expect(service.replaceS(service.replaceMiak('з берагу')).replace(/Ь/g, '[ь]')).toEqual('з[ь] берагу');
+      });
+      it('збегчы -> з[ь]бегчы', () => {
+        expect(service.replaceS(service.replaceMiak('збегчы')).replace(/Ь/g, '[ь]')).toEqual('з[ь]бегчы');
+      });
+      it('збірацца -> з[ь]бірацца', () => {
+        expect(service.replaceS(service.replaceMiak('збірацца')).replace(/Ь/g, '[ь]')).toEqual('з[ь]бірацца');
+      });
+      //в
+    });
     describe('з перад мяккімі зычнымі п, с, ц аглушаеццаі вымаўляецца мякка.', () => { });
     describe('з, зь на канцы слова аглушаюцца і вымаўляюцца як с, сь.', () => { });
     describe('з перад глухімі ш, ч вымаўляецца як ш.', () => { });
