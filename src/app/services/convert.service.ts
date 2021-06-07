@@ -10,10 +10,10 @@ export class ConvertService {
   replaceMiak = (text: string) => {
     let result = text;
     const regexpS1 = /с(?=(([сзлмнцпбв]|дз)[ёеяіюь]))/gi;
-    const regexpS2 = /(?<=((^|[.,;:—-])( ?)((цера|бе|ра|у|ў)?)))с(?=( ([сзлмнцпбв]|дз)[ёеяіюь]))/gi;
+    const regexpS2 = /(?<=((^|[.,;:—-])( ?)((цера|бе|ра|у|ў)?)))с(?=( ([сзлмнцпбв]|дз)\[?[ёеяіюь]))/gi;
 
     const regexpZ1 = /з(?=(([сзлмнцпбв]|дз)[ёеяіюь]))/gi;
-    const regexpZ2 = /(?<=((^|[.,;:—-])( ?)((цера|бе|ра|у|ў)?)))з(?=( ([сзлмнцпбв]|дз)[ёеяіюь]))/gi;
+    const regexpZ2 = /(?<=((^|[.,;:—-])( ?)((цера|бе|ра|у|ў)?)))з(?=( ([сзлмнцпбв]|дз)\[?[ёеяіюь]))/gi;
 
     const regexpC1 = /ц(?=(в[ёеяіюь]))/gi;
 
@@ -21,6 +21,15 @@ export class ConvertService {
     const regexpN1 = /н(?=(н[ёеяіюь]))/gi;
     const regexpL1 = /л(?=(л[ёеяіюь]))/gi;
 
+    result = result.replace(regexpS1, 'сЬ');
+    result = result.replace(regexpS2, 'сЬ');
+    result = result.replace(regexpZ1, 'зЬ');
+    result = result.replace(regexpZ2, 'зЬ');
+    result = result.replace(regexpC1, 'цЬ');
+    result = result.replace(regexpC2, 'цЬ');
+    result = result.replace(regexpN1, 'нЬ');
+    result = result.replace(regexpL1, 'лЬ');
+    
     result = result.replace(regexpS1, 'сЬ');
     result = result.replace(regexpS2, 'сЬ');
     result = result.replace(regexpZ1, 'зЬ');
